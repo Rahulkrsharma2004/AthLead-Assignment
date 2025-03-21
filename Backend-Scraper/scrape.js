@@ -3,12 +3,18 @@ const puppeteer = require("puppeteer");
 async function scrapeAmazonProduct(url) {
   const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
-  await page.goto(url, { waitUntil: "load", timeout: 0 });
+  await page.goto(url, { waitUntil: "domcontentloaded", timeout: 0 });
 
   const productData = await page.evaluate(() => {
     const getText = (selector) => document.querySelector(selector)?.innerText.trim() || "N/A";
+    
+    const getAllText = (selector) => {
+      return [...document.querySelectorAll(selector)].map((el) => el.innerText.trim()).join("\n\n") || "N/A";
+    };
+
     const getImages = (selector) =>
-      [...document.querySelectorAll(selector)].map((img) => img.src);
+      [...document.querySelectorAll(selector)]
+        .map((img) => img.src.replace(/_SS[0-9]+_/, "")) // Remove Amazon's thumbnail resolution suffix
 
     return {
       productName: getText("#productTitle"),
@@ -16,12 +22,12 @@ async function scrapeAmazonProduct(url) {
       numRatings: getText("#acrCustomerReviewText"),
       sellingPrice: getText(".a-price-whole") + getText(".a-price-fraction"),
       totalDiscount: getText(".savingsPercentage"),
-      bankOffers: getText("#promotionDetails_feature_div"),
+      bankOffers: getAllText("#promotionDetails_feature_div *"),  // Get all bank offers inside the div
       aboutThisItem: getText("#feature-bullets"),
       productInfo: getText("#productDetails_techSpec_section_1"),
-      productImages: getImages("#imgTagWrapperId img"),
+      productImages: getImages("#altImages img"),
       fromManufacturerImages: getImages("#aplus img"),
-      aiGeneratedReviewSummary: getText("#cr-summarization-content"),
+      aiGeneratedReviewSummary: getText("#cr-summarization-content") || getText(".a-section.review-summarization"), // Try another selector if needed
     };
   });
 
