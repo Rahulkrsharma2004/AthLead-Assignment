@@ -14,7 +14,7 @@ async function scrapeAmazonProduct(url) {
 
     const getImages = (selector) =>
       [...document.querySelectorAll(selector)]
-        .map((img) => img.src.replace(/_SS[0-9]+_/, "")) // Remove Amazon's thumbnail resolution suffix
+        .map((img) => img.src.replace(/_SS[0-9]+_/, ""))
 
     return {
       productName: getText("#productTitle"),
@@ -22,12 +22,12 @@ async function scrapeAmazonProduct(url) {
       numRatings: getText("#acrCustomerReviewText"),
       sellingPrice: getText(".a-price-whole") + getText(".a-price-fraction"),
       totalDiscount: getText(".savingsPercentage"),
-      bankOffers: getAllText("#promotionDetails_feature_div *"),  // Get all bank offers inside the div
+      bankOffers: getAllText("#promotionDetails_feature_div *"),
       aboutThisItem: getText("#feature-bullets"),
       productInfo: getText("#productDetails_techSpec_section_1"),
       productImages: getImages("#altImages img"),
       fromManufacturerImages: getImages("#aplus img"),
-      aiGeneratedReviewSummary: getText("#cr-summarization-content") || getText(".a-section.review-summarization"), // Try another selector if needed
+      aiGeneratedReviewSummary: getText("#cr-summarization-content") || getText(".a-section.review-summarization"), 
     };
   });
 
