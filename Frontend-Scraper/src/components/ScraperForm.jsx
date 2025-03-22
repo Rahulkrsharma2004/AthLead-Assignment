@@ -10,7 +10,7 @@ function ScraperForm({ setData }) {
 
     setLoading(true);
     try {
-      const res = await axios.post("http://localhost:5000/scrape", { url });
+      const res = await axios.post("https://web-scraper-backend-two.vercel.app/scrape", { url });
       setData(res.data);
     } catch (error) {
       alert("Failed to scrape product");

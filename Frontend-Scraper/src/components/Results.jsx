@@ -3,21 +3,17 @@ import React from "react";
 function Results({ data }) {
   return (
     <div className="bg-white p-6 shadow-lg rounded-md mt-6 w-full max-w-3xl mx-auto">
-      {/* Product Name */}
       <h2 className="text-2xl font-bold text-gray-800">{data.productName}</h2>
 
-      {/* Rating & Reviews */}
       <p className="text-gray-600 mt-2">
         <span className="font-semibold">Rating:</span> {data.rating} ({data.numRatings})
       </p>
 
-      {/* Price & Discount */}
       <p className="text-green-500 text-lg font-bold mt-2">
         Price: ₹{data.sellingPrice}
       </p>
       <p className="text-red-500 font-semibold">Discount: {data.totalDiscount}</p>
 
-      {/* Bank Offers */}
       {data.bankOffers && (
         <div className="mt-4 p-3 bg-blue-100 border border-blue-300 rounded-md">
           <h3 className="font-bold text-blue-700">Bank Offers:</h3>
@@ -25,13 +21,11 @@ function Results({ data }) {
         </div>
       )}
 
-      {/* About This Item */}
       <div className="mt-4">
         <h3 className="font-bold text-lg">About This Item:</h3>
         <p className="text-gray-700">{data.aboutThisItem}</p>
       </div>
 
-      {/* AI-Generated Review Summary */}
       {data.aiGeneratedReviewSummary && (
         <div className="mt-4 p-3 bg-yellow-100 border border-yellow-300 rounded-md">
           <h3 className="font-bold text-yellow-700">AI-Generated Review Summary:</h3>
@@ -39,13 +33,11 @@ function Results({ data }) {
         </div>
       )}
 
-      {/* Product Information */}
       <div className="mt-4">
         <h3 className="font-bold text-lg">Product Information:</h3>
         <p className="text-gray-700 whitespace-pre-line">{data.productInfo}</p>
       </div>
 
-      {/* Product Images */}
       {data.productImages.length > 0 && (
         <div className="mt-4">
           <h3 className="font-bold text-lg">Product Images:</h3>
@@ -57,7 +49,6 @@ function Results({ data }) {
         </div>
       )}
 
-      {/* Manufacturer Images */}
       {data.fromManufacturerImages.length > 0 && (
         <div className="mt-4">
           <h3 className="font-bold text-lg">From Manufacturer:</h3>
