@@ -2,7 +2,8 @@
 
 # 🛍️ Amazon India Smart TV Web Scraper  
 
-A **web scraper** that extracts **detailed product information** from any **Smart TV listing** on **Amazon India**. This tool fetches product details, pricing, offers, reviews, and images, displaying them in an **Amazon-like UI**.  
+This project is a **fully functional web scraper** that extracts **detailed product information** from **Smart TV listings** on **Amazon India**. Using **Puppeteer**, it fetches data such as product name, price, discounts, bank offers, ratings, reviews, and images.  
+The extracted data is then displayed in an **Amazon-like UI**, built with **React.js** and **Tailwind CSS**. This tool helps users analyze product details efficiently **without manually browsing Amazon**.    
 
 ## 🚀 Features  
 
@@ -31,7 +32,6 @@ A **web scraper** that extracts **detailed product information** from any **Smar
 - **Node.js** – JavaScript runtime for server-side logic  
 - **Express.js** – Fast, unopinionated web framework  
 - **Puppeteer** – Headless Chrome browser for web scraping  
-- **Cheerio** – Lightweight alternative for HTML parsing  
 
 ### 🔹 **Data Handling**  
 - **Axios** – For API calls  
