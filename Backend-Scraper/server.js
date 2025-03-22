@@ -5,7 +5,7 @@ const { scrapeAmazonProduct } = require("./scrape");
 const app = express();
 
 app.use(cors({
-  origin: ["https://amazon-web-scraper-psi.vercel.app", "https://web-scraper-backend-two.vercel.app", "http://localhost:5173"],
+  origin: ["https://amazon-web-scraper-psi.vercel.app", "https://web-scrape-backend.vercel.app", "http://localhost:5173"],
 }));
 
 
