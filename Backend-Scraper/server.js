@@ -18,4 +18,11 @@ app.post("/scrape", async (req, res) => {
   }
 });
 
+
+app.use((req,res)=>{
+  res.status(200).json({
+    message: "Welcome to the Backend-Scraper API.",
+  });
+})
+
 app.listen(5000, () => console.log("Server running on port 5000"));
