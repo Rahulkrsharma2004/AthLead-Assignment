@@ -3,20 +3,25 @@ const cors = require("cors");
 const { scrapeAmazonProduct } = require("./scrape");
 
 const app = express();
+// app.use(cors({
+//   origin:[
+//     "http://localhost:5173",
+//     "https://amazon-web-scraper-psi.vercel.app",
+//     "https://web-scrape-backend.vercel.app"
+//   ]
+// }));
 app.use(cors({
-  origin:[
-    "http://localhost:5173",
-    "https://amazon-web-scraper-psi.vercel.app",
-    "https://web-scrape-backend.vercel.app"
-  ]
+  origin: "*"
 }));
 app.use(express.json());
 
 app.post("/scrape", async (req, res) => {
   const { url } = req.body;
+  console.log("product url",url);
   if (!url) return res.status(400).json({ error: "Product URL is required" });
 
   try {
+    console.log("product url",url);
     const productData = await scrapeAmazonProduct(url);
     res.json(productData);
   } catch (error) {
