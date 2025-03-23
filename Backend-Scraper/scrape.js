@@ -1,7 +1,16 @@
 const puppeteer = require("puppeteer");
 
 async function scrapeAmazonProduct(url) {
-  const browser = await puppeteer.launch({ headless: true });
+  const browser = await puppeteer.launch({
+    headless: "new", // Ensure the latest headless mode
+    args: [
+      "--no-sandbox",
+      "--disable-setuid-sandbox",
+      "--disable-dev-shm-usage",
+      "--disable-gpu",
+    ],
+  });
+
   const page = await browser.newPage();
   await page.goto(url, { waitUntil: "domcontentloaded", timeout: 0 });
 
@@ -14,7 +23,7 @@ async function scrapeAmazonProduct(url) {
 
     const getImages = (selector) =>
       [...document.querySelectorAll(selector)]
-        .map((img) => img.src.replace(/_SS[0-9]+_/, ""))
+        .map((img) => img.src.replace(/_SS[0-9]+_/, ""));
 
     return {
       productName: getText("#productTitle"),
