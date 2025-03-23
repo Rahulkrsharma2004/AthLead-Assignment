@@ -26,7 +26,7 @@ app.post("/scrape", async (req, res) => {
   if (!url) return res.status(400).json({ error: "Product URL is required" });
 
   try {
-    console.log("product url",url);
+    console.log("product url in try",url);
     const productData = await scrapeAmazonProduct(url);
     res.json(productData);
   } catch (error) {
