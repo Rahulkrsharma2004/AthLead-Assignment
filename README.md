@@ -17,9 +17,12 @@ The extracted data is then displayed in an **Amazon-like UI**, built with **Reac
 ✔️ **Optimized for Performance** – Efficient and fast scraping using Puppeteer  
 
 ## 📸 Preview  
+<img width="946" alt="am1" src="https://github.com/user-attachments/assets/1d67de09-cb5a-45c5-928b-bb5c2e179c1b" />
+<img width="944" alt="am2" src="https://github.com/user-attachments/assets/38d8b5fa-8f17-411b-a4c4-1643d432aa35" />
+<img width="946" alt="am3" src="https://github.com/user-attachments/assets/26c63eb0-3922-490c-b305-b6fe77d0b6f7" />
+<img width="934" alt="am4" src="https://github.com/user-attachments/assets/fc6dcd68-5c95-46b5-b9fb-9663a1ad5314" />
+<img width="934" alt="am5" src="https://github.com/user-attachments/assets/58bfa4bc-5450-4b9e-bd6e-8ceeb88226ee" />
 
-![Project Screenshot](your-image-link-here)  
-*(Replace with an actual screenshot of your scraper in action!)*  
 
 ## 🛠️ Tech Stack  
 
