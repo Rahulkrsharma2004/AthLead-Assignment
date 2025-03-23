@@ -1,21 +1,23 @@
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const { scrapeAmazonProduct } = require("./scrape");
+const { configDotenv } = require("dotenv");
 
 const app = express();
 
-app.use(cors({
-  origin:[
-    "http://localhost:5173",
-    "https://amazon-web-scraper-psi.vercel.app",
-    // "https://web-scrape-backend.vercel.app"
-    "https://athlead-assignment.onrender.com"
-  ]
-}));
-
 // app.use(cors({
-//   origin: "*"
+//   origin:[
+//     "http://localhost:5173",
+//     "https://amazon-web-scraper-psi.vercel.app",
+//     // "https://web-scrape-backend.vercel.app"
+//     "https://athlead-assignment.onrender.com"
+//   ]
 // }));
+
+app.use(cors({
+  origin: "*"
+}));
 
 app.use(express.json());
 
@@ -40,4 +42,6 @@ app.use('/',(req,res)=>{
   });
 })
 
-app.listen(5000, () => console.log("Server running on port 5000"));
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
