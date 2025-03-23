@@ -1,29 +1,30 @@
-const puppeteer = require("puppeteer");
+const puppeteer = require("puppeteer-core");
+const chromium = require("chrome-aws-lambda");
 
 async function scrapeAmazonProduct(url) {
   const browser = await puppeteer.launch({
-    headless: "new", // Ensure the latest headless mode
-    args: [
-      "--no-sandbox",
-      "--disable-setuid-sandbox",
-      "--disable-dev-shm-usage",
-      "--disable-gpu",
-    ],
+    args: [...chromium.args, "--no-sandbox", "--disable-setuid-sandbox"],
+    defaultViewport: chromium.defaultViewport,
+    executablePath: await chromium.executablePath,
+    headless: chromium.headless,
   });
 
   const page = await browser.newPage();
   await page.goto(url, { waitUntil: "domcontentloaded", timeout: 0 });
 
   const productData = await page.evaluate(() => {
-    const getText = (selector) => document.querySelector(selector)?.innerText.trim() || "N/A";
-    
-    const getAllText = (selector) => {
-      return [...document.querySelectorAll(selector)].map((el) => el.innerText.trim()).join("\n\n") || "N/A";
-    };
+    const getText = (selector) =>
+      document.querySelector(selector)?.innerText.trim() || "N/A";
+
+    const getAllText = (selector) =>
+      [...document.querySelectorAll(selector)]
+        .map((el) => el.innerText.trim())
+        .join("\n\n") || "N/A";
 
     const getImages = (selector) =>
-      [...document.querySelectorAll(selector)]
-        .map((img) => img.src.replace(/_SS[0-9]+_/, ""));
+      [...document.querySelectorAll(selector)].map((img) =>
+        img.src.replace(/_SS[0-9]+_/, "")
+      );
 
     return {
       productName: getText("#productTitle"),
@@ -36,7 +37,9 @@ async function scrapeAmazonProduct(url) {
       productInfo: getText("#productDetails_techSpec_section_1"),
       productImages: getImages("#altImages img"),
       fromManufacturerImages: getImages("#aplus img"),
-      aiGeneratedReviewSummary: getText("#cr-summarization-content") || getText(".a-section.review-summarization"), 
+      aiGeneratedReviewSummary:
+        getText("#cr-summarization-content") ||
+        getText(".a-section.review-summarization"),
     };
   });
 

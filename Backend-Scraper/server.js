@@ -2,7 +2,6 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const { scrapeAmazonProduct } = require("./scrape");
-const { configDotenv } = require("dotenv");
 
 const app = express();
 
