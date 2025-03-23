@@ -8,7 +8,8 @@ app.use(cors({
   origin:[
     "http://localhost:5173",
     "https://amazon-web-scraper-psi.vercel.app",
-    "https://web-scrape-backend.vercel.app"
+    // "https://web-scrape-backend.vercel.app"
+    "https://athlead-assignment.onrender.com"
   ]
 }));
 
